@@ -35,8 +35,8 @@ fi
 
 if [ "${MODE}" = "install" ] ; then
   mkdir -p "${HESK_PATH}"
-  unzip /hesk/hesk*.zip -o -d "${HESK_PATH}" -x hesk_settings.inc.php header.txt footer.txt
-  unzip /hesk/hesk*.zip -n -d "${HESK_PATH}" hesk_settings.inc.php header.txt footer.txt
+  unzip ${HESK_PATH}/hesk*.zip -o -d "${HESK_PATH}" -x hesk_settings.inc.php header.txt footer.txt
+  unzip ${HESK_PATH}/hesk*.zip -n -d "${HESK_PATH}" hesk_settings.inc.php header.txt footer.txt
   
   if [ "${ADD_MODS_URL}" != "" ];
   then
