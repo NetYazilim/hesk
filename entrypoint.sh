@@ -2,15 +2,15 @@
 
 if [ -f "${PHP_CONF}" ];
 then
-	cp -f "${PHP_CONF}" /etc/php7/php-fpm.d/www.conf &> /dev/null
+	cp -f "${PHP_CONF}" /etc/php83/php-fpm.d/www.conf &> /dev/null
 fi
 
 if [ -f "${WEB_CONF}" ];
 then
-	cp -f "${WEB_CONF}" /etc/nginx/conf.d/default.conf &> /dev/null
+	cp -f "${WEB_CONF}" /etc/nginx/http.d/default.conf &> /dev/null
 fi
 
-sed -i "s|root \/shared\/hesk\/;|root $HESK_PATH/;|g" /etc/nginx/conf.d/default.conf
+sed -i "s|root \/shared\/hesk\/;|root $HESK_PATH/;|g" /etc/nginx/http.d/default.conf
 
 if [ "$(ls -A "${HESK_PATH}")" ]; then
    echo "$HESK_PATH is not Empty"
@@ -54,13 +54,13 @@ if [ "${MODE}" = "install" ] ; then
   chmod 777 -R "${HESK_PATH}"/attachments
   chmod 777 -R "${HESK_PATH}"/cache
   echo "Start..."
-  /usr/sbin/php-fpm7
+  /usr/sbin/php-fpm83
   /usr/sbin/nginx -g "daemon off;"
 fi
 
 if [ "${MODE}" = "run" ] ; then
   rm -fR "$HESK_PATH"/install
   echo "Start..."
-  /usr/sbin/php-fpm7
+  /usr/sbin/php-fpm83
   /usr/sbin/nginx -g "daemon off;"
 fi 
