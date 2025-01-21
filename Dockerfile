@@ -15,9 +15,10 @@ ENV ADD_LANG_URL=""
 COPY entrypoint.sh /bin/entrypoint.sh
 COPY default.conf /etc/nginx/http.d/default.conf
 COPY user.ini /etc/php83/conf.d/user.ini
-COPY hesk351.zip /hesk/hesk351.zip
-
-RUN apk add --update --no-cache ca-certificates nginx  php83-fpm php83-mysqli php83-json php83-session 	php83-curl && \
+COPY hesk352.zip /hesk/hesk352.zip
+# php83-iconv php83-mbstring php83-xml php83-ctype 
+RUN apk add --update --no-cache ca-certificates nginx  php83-fpm php83-mysqli php83-json php83-session \
+    php83-curl && \
     update-ca-certificates
 
 RUN sed -i 's/user = nobody/user = nginx/g' /etc/php83/php-fpm.d/www.conf  && \
